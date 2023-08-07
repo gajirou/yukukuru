@@ -1,0 +1,6 @@
+{
+  "version": "2",
+  "remote": {
+    "https://deno.land/x/nostr_deno_client@v0.2.7/mod.ts": "cf141f9ffac5714a77a377bd2a13ede8370d4863f3448b5e2c3a412a5172e3f4"
+  }
+}
