@@ -6,7 +6,7 @@ export function yukukuru(oneWordFlag: boolean, basisDate?: string): string {
 
     const year         = today.getFullYear();
     const lastYearDays = new Date(year, 12, 0).getTime() - today.getTime()
-    const leftDays     = Math.floor(lastYearDays / (24 * 60 * 60 * 1000)) + 1;
+    const leftDays     = Math.floor(lastYearDays / (24 * 60 * 60 * 1000));
 
     let yearDays = 365;
     if (new Date(year, 2, 0).getDate() === 29) {
@@ -14,32 +14,36 @@ export function yukukuru(oneWordFlag: boolean, basisDate?: string): string {
     }
 
     const progresCurrentPer = 100 - Math.round((leftDays / yearDays) * 100);
+    const displayCurrentPer = (100 - (leftDays / yearDays) * 100).toFixed(1);
     const progresBarCount   = Math.round((progresCurrentPer / 100) * 15);
     const progresBarCurrent = [...Array(progresBarCount)].map(() => '■');
-    const progresBarleft    = [...Array(15 - progresBarCount)].map(() => '□');
-    const progresMessage    = progresBarCurrent.join("") + progresBarleft.join("") + " " + progresCurrentPer + "%";
+    const progresBarLeft    = [...Array(15 - progresBarCount)].map(() => '□');
+    const progresMessage    = progresBarCurrent.join("") + progresBarLeft.join("") + " " + displayCurrentPer + "%";
 
-    let oneWord = "";
+    let oneWord = year + "年の" + (yearDays - leftDays).toString() + "日目になりました。";
     if (oneWordFlag) {
         switch (leftDays) {
-            case 1:
-                oneWord = year + "年も本日で終わりです🌄";
+            case 0:
+                oneWord = year + "年も本日で終わりです、1年お疲れ様でした🌄";
                 break;
-            case 4:
-                oneWord = year + "年もあとわずか、良いお年をお過ごしください🍶";
+            case 3:
+                oneWord = year + "年もあとわずかです、良いお年をお過ごしください🍶";
                 break;
-            case 7:
+            case 6:
                 oneWord = "メリークリスマス🎅";
                 break;
-            case 62:
+            case 61:
                 oneWord = "ハッピーハロウィン🎃";
                 break;
+            case 364:
+                if (366 !== yearDays) {
+                    oneWord = year + "年が始まりました、あけましておめでとうございます🌅";
+                }
+                break;
             case 365:
-            case 366:
                 oneWord = year + "年が始まりました、あけましておめでとうございます🌅";
                 break;
             default:
-                oneWord = year + "年が" + (yearDays - leftDays).toString() + "日経過しました。"
                 break;
         }
     }
