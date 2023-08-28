@@ -1,5 +1,5 @@
-import { yukukuru } from './yukukuru.ts';
-import { Nostr, Relay } from 'https://deno.land/x/nostr_deno_client/mod.ts';
+import { yukukuru } from "./yukukuru.ts";
+import { Nostr, Relay } from "https://deno.land/x/nostr_deno_client/mod.ts";
 
 const relayList = {
     // "lol" : "wss://nos.lol",
