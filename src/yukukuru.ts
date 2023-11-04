@@ -6,7 +6,7 @@ export function yukukuru(oneWordFlag: boolean, basisDate?: string): string {
 
     const year         = today.getFullYear();
     const lastYearDays = new Date(year, 12, 0).getTime() - today.getTime()
-    const leftDays     = Math.floor(lastYearDays / (24 * 60 * 60 * 1000));
+    const leftDays     = Math.floor(lastYearDays / (24 * 60 * 60 * 1000) + 1);
 
     let yearDays = 365;
     if (new Date(year, 2, 0).getDate() === 29) {
@@ -26,7 +26,7 @@ export function yukukuru(oneWordFlag: boolean, basisDate?: string): string {
             case 0:
                 oneWord = year + "年も本日で終わりです、1年お疲れ様でした🌄";
                 break;
-            case 3:
+            case 2:
                 oneWord = year + "年もあとわずかです、良いお年をお過ごしください🍶";
                 break;
             case 6:
